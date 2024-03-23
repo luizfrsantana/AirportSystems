@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content%} 
+<ul class="crud-menu">
+    <li><a href="{% url 'create_passenger' %}"><b>Add New Passenger</b></a></li>
+</ul>
+<h1>Passengers</h1>
+<table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for passenger in passengers %}
+      <tr>
+        <td>{{ passenger.name }}</td>
+        <td>{{ passenger.email }}</td>
+        <td>{{ passenger.phone }}</td>
+        <td>{{ passenger.address }}</td>
+        <td>
+          <form action="#" method="post" style="display: inline;">
+            <button type="submit">Update</button>
+          </form>
+          <form action="{% url 'delete_passenger' passenger.passengerID %}" method="post" style="display: inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{%endblock content%}

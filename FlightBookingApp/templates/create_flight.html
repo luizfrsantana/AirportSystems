@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content%} 
+<ul class="crud-menu">
+    <li><a href="{% url 'create_passenger' %}"><b>Add New Flight</b></a></li>
+</ul>
+<h2>Create Flight</h2>
+<form method="post" action="{% url 'create_flight' %}">
+    <label for="flightNumber">Flight Number:</label><br>
+    <input type="text" id="flightNumber" name="flightNumber"><br>
+    <label for="departureAirport">Departure Airport:</label><br>
+    <input type="text" id="departureAirport" name="departureAirport"><br>
+    <label for="arrivalAirport">Arrival Airport:</label><br>
+    <input type="text" id="arrivalAirport" name="arrivalAirport"><br>
+    <label for="departureTime">Departure Time YYYY-MM-DD HH:MM:</label><br>
+    <input type="text" id="departureTime" name="departureTime" pattern="\d{4}-\d{2}-\d{2} \d{2}:\d{2}" title="Please enter a valid date and time in YYYY-MM-DD HH:MM format"><br><br>
+    <label for="arrivalTime">Arrival Time YYYY-MM-DD HH:MM:</label><br>
+    <input type="text" id="arrivalTime" name="arrivalTime" pattern="\d{4}-\d{2}-\d{2} \d{2}:\d{2}" title="Please enter a valid date and time in YYYY-MM-DD HH:MM format"><br><br>
+    <label for="capacity">Capacity:</label><br>
+    <input type="number" id="capacity" name="capacity" min="1"><br><br>
+    <label for="price">Price:</label><br>
+    <input type="number" id="price" name="price" step="0.01" min="0"><br><br>
+    <button type="submit">Submit</button>
+</form>
+{%endblock content%}

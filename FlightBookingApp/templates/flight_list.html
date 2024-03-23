@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content%} 
+<ul class="crud-menu">
+    <li><a href="{% url 'create_flight' %}"><b>Add New Flight</b></a></li>
+</ul>
+<h1>Flights</h1>
+<table border="1">
+    <thead>
+      <tr>
+        <th>Flight Number</th>
+        <th>Departure Airport</th>
+        <th>Arrival Airport</th>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+        <th>Capacity</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for flight in flights %}
+      <tr>
+        <td>{{ flight.flightNumber }}</td>
+        <td>{{ flight.departureAirport }}</td>
+        <td>{{ flight.arrivalAirport }}</td>
+        <td>{{ flight.departureTime }}</td>
+        <td>{{ flight.arrivalTime }}</td>
+        <td>{{ flight.capacity }}</td>
+        <td>{{ flight.price }}</td>
+        <td>
+          <form action="{% url 'update_flight' flight.flightID %}" method="post" style="display: inline;">
+            <button type="submit">Update</button>
+          </form>
+          <form action="{% url 'delete_flight' flight.flightID %}" method="post" style="display: inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{%endblock content%}

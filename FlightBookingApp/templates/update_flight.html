@@ -5,7 +5,7 @@
     <li><a href="{% url 'create_passenger' %}"><b>Add New Flight</b></a></li>
 </ul>
 <h2>Update Flight</h2>
-<form method="post" action="{% url 'update_flight_by_id' flight.flightID %}">
+<form method="post" action="{% url 'update_flight_submit' flight.flightID %}">
     <label for="flightNumber">Flight Number:</label><br>
     <input type="text" id="flightNumber" name="flightNumber" value="{{ flight.flightNumber }}"><br>
     <label for="departureAirport">Departure Airport:</label><br>

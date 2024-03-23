@@ -29,7 +29,7 @@
         <td>{{ flight.capacity }}</td>
         <td>{{ flight.price }}</td>
         <td>
-          <form action="{% url 'update_flight' flight.flightID %}" method="post" style="display: inline;">
+          <form action="{% url 'update_flight_form' flight.flightID %}" method="post" style="display: inline;">
             <button type="submit">Update</button>
           </form>
           <form action="{% url 'delete_flight' flight.flightID %}" method="post" style="display: inline;">

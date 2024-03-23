@@ -23,7 +23,7 @@
         <td>{{ passenger.phone }}</td>
         <td>{{ passenger.address }}</td>
         <td>
-          <form action="#" method="post" style="display: inline;">
+          <form action="{% url 'update_passenger_form' passenger.passengerID %}" method="post" style="display: inline;">
             <button type="submit">Update</button>
           </form>
           <form action="{% url 'delete_passenger' passenger.passengerID %}" method="post" style="display: inline;">

@@ -18,7 +18,7 @@ def passenger_list(request):
 def create_passenger(request):
     if request.method == 'POST':
         # Via JSON
-        if request.body: 
+        if 'application/json' in request.content_type: 
             data = json.loads(request.body)
             name = data.get('name')
             email = data.get('email')
@@ -45,9 +45,33 @@ def delete_passenger(request, passenger_id):
         passenger.delete()
     return redirect('passenger_list')
 
+def update_passenger_form(request, passenger_id):
+    passenger = Passenger.objects.get(passengerID=passenger_id)
+    return render(request, 'update_passenger.html', {'passenger': passenger})
+
+def update_passenger_submit(request, passenger_id):
+    passenger = Passenger.objects.get(passengerID=passenger_id)
+    
+    if request.method == 'POST': # Via WEBFORM
+        passenger.name = request.POST.get('name')
+        passenger.email = request.POST.get('email')
+        passenger.phone = request.POST.get('phone')
+        passenger.address = request.POST.get('address')
+
+        
+    if request.method == 'PUT': # Via JSON
+        data = json.loads(request.body)
+        passenger.name = data.get('name')
+        passenger.email = data.get('email')
+        passenger.phone = data.get('phone')
+        passenger.address = data.get('address')
+
+    passenger.save()
+    return redirect('passenger_list')
+
 # ========= Flight VIEWs ================
 
-def formatted_flight(flight):
+def formatted_flight(flight): # Created to format data to be presented on the screen.
     formatted_flight = {
         'flightID': flight.flightID,
         'flightNumber': flight.flightNumber,
@@ -69,7 +93,7 @@ def flight_list(request):
     return render(request, 'flight_list.html', {'flights': formatted_flights})
 
 def create_flight(request):
-    if request.method == 'POST': # POST Data
+    if request.method == 'POST':
         # Via JSON
         if 'application/json' in request.content_type:
             data = json.loads(request.body)
@@ -79,8 +103,7 @@ def create_flight(request):
             departureTime = data.get('departureTime')
             arrivalTime = data.get('arrivalTime')
             capacity = data.get('capacity')
-            price = data.get('price')
-            
+            price = data.get('price')     
         # Via WEBFORM
         else:
             flightNumber = request.POST.get('flightNumber')
@@ -106,11 +129,11 @@ def delete_flight(request, flight_id):
         flight.delete()
     return redirect('flight_list')
 
-def update_flight(request, flight_id):
+def update_flight_form(request, flight_id):
     flight = formatted_flight(Flight.objects.get(flightID=flight_id))
     return render(request, 'update_flight.html', {'flight': flight})
 
-def update_flight_by_id(request, flight_id):
+def update_flight_submit(request, flight_id):
     flight = Flight.objects.get(flightID=flight_id)
     
     if request.method == 'POST': # Via WEBFORM
@@ -131,6 +154,5 @@ def update_flight_by_id(request, flight_id):
         flight.arrivalTime = data.get('arrivalTime')
         flight.capacity = data.get('capacity')
         flight.price = data.get('price')
-        flight = Flight.objects.get(flightID=flight_id)
     flight.save()
     return redirect('flight_list')

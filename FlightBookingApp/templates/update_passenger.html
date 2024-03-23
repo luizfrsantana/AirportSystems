@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content%} 
+<ul class="crud-menu">
+    <li><a href="{% url 'create_passenger' %}"><b>Add New Flight</b></a></li>
+</ul>
+<h2>Update Passenger</h2>
+<form method="post" action="{% url 'update_passenger_submit' passenger.passengerID %}">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" value="{{ passenger.name }}"><br>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" value="{{ passenger.email }}"><br>
+    <label for="phone">Phone:</label><br>
+    <input type="text" id="phone" name="phone" value="{{ passenger.phone }}"><br>
+    <label for="address">Address:</label><br>
+    <input type="text" id="address" name="address" value="{{ passenger.address }}"><br><br>
+    <button type="submit">Submit</button>
+</form>
+{%endblock content%}

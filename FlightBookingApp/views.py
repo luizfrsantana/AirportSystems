@@ -169,7 +169,7 @@ def booking_list(request):
             "flightNumber":booking.flightID.flightNumber,
             "bookingDate":booking.bookingDate,
             "seatNumber":booking.seatNumber,
-            "status":booking.status,
+            "status":booking.status.capitalize(),
         }
         bookings_formatted.append(booking_formatted)
     return render(request, 'booking_list.html', {'bookings_formatted': bookings_formatted})
@@ -204,4 +204,33 @@ def delete_booking(request, booking_id):
     booking = Booking.objects.get(bookingID=booking_id)
     if request.method == 'POST' or request.method == 'DELETE':
         booking.delete()
+    return redirect('booking_list')
+
+def update_booking_form(request, booking_id):
+    booking = Booking.objects.get(bookingID=booking_id)
+    booking_formatted = {
+        "bookingID": booking.bookingID,
+        "passengerID": booking.passengerID.passengerID,
+        "passengerName": booking.passengerID.name,
+        "flightID": booking.flightID.flightID,
+        "flightNumber":booking.flightID.flightNumber,
+        "bookingDate":booking.bookingDate,
+        "seatNumber":booking.seatNumber,
+        "status":booking.status.capitalize(),
+    }
+    return render(request, 'update_booking.html', {'booking_formatted': booking_formatted})
+
+def update_booking_submit(request, booking_id):
+    booking = Booking.objects.get(bookingID=booking_id)
+    
+    if request.method == 'POST': # Via WEBFORM
+        booking.passengerID = Passenger.objects.get(pk=(int(request.POST.get('passengerID'))))
+        booking.flightID = Flight.objects.get(pk=int((request.POST.get('flightID'))))
+        booking.seatNumber = request.POST.get('seat')
+        booking.status = request.POST.get('status')
+        
+    if request.method == 'PUT': # Via JSON
+        pass
+    
+    booking.save()
     return redirect('booking_list')

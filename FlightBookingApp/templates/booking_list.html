@@ -25,7 +25,7 @@
         <td>{{ booking.seatNumber }}</td>
         <td>{{ booking.status }}</td>
         <td>
-          <form action="#" method="post" style="display: inline;">
+          <form action="{% url 'update_booking_form' booking.bookingID %}" method="post" style="display: inline;">
             <button type="submit">Update</button>
           </form>
           <form action="{% url 'delete_booking' booking.bookingID %}" method="post" style="display: inline;">

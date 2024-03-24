@@ -37,3 +37,10 @@ JSON - Needs:
 }
 
 == Booking body (raw)==
+
+{
+  "passengerID":,
+  "flightID":,
+  "seat":"",
+  "status":""
+}

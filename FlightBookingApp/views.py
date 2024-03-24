@@ -178,7 +178,13 @@ def create_booking(request):
     if request.method == 'POST':
         # Via JSON
         if 'application/json' in request.content_type:
-            pass 
+            data = json.loads(request.body)
+            passengerID = data.get('passengerID')
+            passenger = Passenger.objects.get(pk=passengerID)
+            flightID = data.get('flightID')
+            flight = Flight.objects.get(pk=flightID)
+            seatNumber = data.get('seat')
+            status = data.get('status') 
         # Via WEBFORM
         else:
             passengerID = request.POST.get('passengerID')
@@ -224,13 +230,17 @@ def update_booking_submit(request, booking_id):
     booking = Booking.objects.get(bookingID=booking_id)
     
     if request.method == 'POST': # Via WEBFORM
-        booking.passengerID = Passenger.objects.get(pk=(int(request.POST.get('passengerID'))))
-        booking.flightID = Flight.objects.get(pk=int((request.POST.get('flightID'))))
+        booking.passengerID = Passenger.objects.get(pk=(request.POST.get('passengerID')))
+        booking.flightID = Flight.objects.get(pk=(request.POST.get('flightID')))
         booking.seatNumber = request.POST.get('seat')
         booking.status = request.POST.get('status')
         
     if request.method == 'PUT': # Via JSON
-        pass
+        data = json.loads(request.body)
+        booking.passengerID = Passenger.objects.get(pk=(data.get('passengerID')))
+        booking.flightID = Flight.objects.get(pk=(data.get('flightID')))
+        booking.seatNumber = data.get('seat')
+        booking.status = data.get('status') 
     
     booking.save()
     return redirect('booking_list')

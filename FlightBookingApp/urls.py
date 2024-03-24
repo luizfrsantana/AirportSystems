@@ -19,5 +19,7 @@ urlpatterns = [
     path('flight/update/<int:flight_id>/', views.update_flight_form, name='update_flight_form'), #load flight information to update
     path('flight/update/<int:flight_id>/submit', views.update_flight_submit, name='update_flight_submit'), #submit the update
     
-
+    #Flight Paths
+    path('booking_list/', views.booking_list, name='booking_list'), 
+    path('create_booking/', views.create_booking, name='create_booking'),
 ]

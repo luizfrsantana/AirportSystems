@@ -156,3 +156,46 @@ def update_flight_submit(request, flight_id):
         flight.price = data.get('price')
     flight.save()
     return redirect('flight_list')
+
+# ========= Booking VIEWs ================
+
+def booking_list(request):
+    bookings = Booking.objects.all()
+    bookings_formatted = []
+    for booking in bookings:
+        booking_formatted = {
+            "bookingID": booking.bookingID,
+            "passengerName": booking.passengerID.name,
+            "flightNumber":booking.flightID.flightNumber,
+            "bookingDate":booking.bookingDate,
+            "seatNumber":booking.seatNumber,
+            "status":booking.status,
+        }
+        bookings_formatted.append(booking_formatted)
+    return render(request, 'booking_list.html', {'bookings_formatted': bookings_formatted})
+
+def create_booking(request):
+    if request.method == 'POST':
+        # Via JSON
+        if 'application/json' in request.content_type:
+            pass 
+        # Via WEBFORM
+        else:
+            passengerID = request.POST.get('passengerID')
+            passenger = Passenger.objects.get(pk=passengerID)
+            flightID = request.POST.get('flightID')
+            flight = Flight.objects.get(pk=flightID)
+            seatNumber = request.POST.get('seat')
+            status = request.POST.get('status')
+
+        # New passenger instance 
+        new_booking = Booking(passengerID=passenger, flightID=flight,
+                              seatNumber=seatNumber, status=status)
+        # Save passenger data
+        new_booking.save()
+        return booking_list(request)
+    else:
+        passengers = Passenger.objects.all()
+        flights = Flight.objects.all()
+        # form to create booking
+        return render(request, 'create_booking.html', {'passengers': passengers, 'flights': flights})  

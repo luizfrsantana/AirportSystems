@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content%} 
+<ul class="crud-menu">
+    <li><a href="{% url 'create_booking' %}"><b>Add New Booking</b></a></li>
+</ul>
+<h1>Passengers</h1>
+<table border="1">
+    <thead>
+      <tr>
+        <th>Passenger Name</th>
+        <th>Flight Number</th>
+        <th>Booking Date</th>
+        <th>Seat Number</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for booking in bookings_formatted %}
+      <tr>
+        <td>{{ booking.passengerName }}</td>
+        <td>{{ booking.flightNumber }}</td>
+        <td>{{ booking.bookingDate }}</td>
+        <td>{{ booking.seatNumber }}</td>
+        <td>{{ booking.status }}</td>
+        <td>
+          <form action="#" method="post" style="display: inline;">
+            <button type="submit">Update</button>
+          </form>
+          <form action="#" method="post" style="display: inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{%endblock content%}

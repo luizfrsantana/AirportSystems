@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block content %} 
+<ul class="crud-menu">
+    <li><a href="{% url 'create_booking' %}"><b>Add New Booking</b></a></li>
+</ul>
+<h2>Create Booking</h2>
+<form method="post" action="{% url 'create_booking' %}">
+    <label for="passenger">Passenger:</label><br>
+    <select id="passengerID" name="passengerID">
+        {% for passenger in passengers %}
+            <option value="{{ passenger.passengerID }}">{{ passenger.name }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label for="flight">Flight:</label><br>
+    <select id="flightID" name="flightID">
+        {% for flight in flights %}
+            <option value="{{ flight.flightID }}">{{ flight.flightNumber }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label for="seat">Seat Number:</label><br>
+    <input type="text" id="seat" name="seat"><br><br>
+
+    <label for="status">Status:</label><br>
+    <select id="status" name="status">
+        <option value="confirmed">Confirmed</option>
+        <option value="pending">Pending</option>
+        <option value="canceled">Canceled</option>
+    </select><br><br>
+    <button type="submit">Submit</button>
+</form>
+{% endblock content %}

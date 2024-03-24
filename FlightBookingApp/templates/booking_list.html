@@ -28,7 +28,7 @@
           <form action="#" method="post" style="display: inline;">
             <button type="submit">Update</button>
           </form>
-          <form action="#" method="post" style="display: inline;">
+          <form action="{% url 'delete_booking' booking.bookingID %}" method="post" style="display: inline;">
             <button type="submit">Delete</button>
           </form>
         </td>

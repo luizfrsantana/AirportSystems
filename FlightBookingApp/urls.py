@@ -22,4 +22,5 @@ urlpatterns = [
     #Flight Paths
     path('booking_list/', views.booking_list, name='booking_list'), 
     path('create_booking/', views.create_booking, name='create_booking'),
+    path('booking/delete/<int:booking_id>/', views.delete_booking, name='delete_booking'),
 ]

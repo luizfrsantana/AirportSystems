@@ -199,3 +199,9 @@ def create_booking(request):
         flights = Flight.objects.all()
         # form to create booking
         return render(request, 'create_booking.html', {'passengers': passengers, 'flights': flights})  
+    
+def delete_booking(request, booking_id):
+    booking = Booking.objects.get(bookingID=booking_id)
+    if request.method == 'POST' or request.method == 'DELETE':
+        booking.delete()
+    return redirect('booking_list')

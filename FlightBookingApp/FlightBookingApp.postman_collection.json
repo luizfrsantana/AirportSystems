@@ -1,0 +1,289 @@
+{
+	"info": {
+		"_postman_id": "1e5b25d3-d2e7-435c-9587-0f829c7c0a25",
+		"name": "FlightBookingApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28075141"
+	},
+	"item": [
+		{
+			"name": "Delete_Booking_by_ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL_BASE}}/flightbooking/booking/delete/30/",
+					"host": [
+						"{{URL_BASE}}"
+					],
+					"path": [
+						"flightbooking",
+						"booking",
+						"delete",
+						"30",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete_Passenger_by_ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL_BASE}}/flightbooking/passenger/delete/8/",
+					"host": [
+						"{{URL_BASE}}"
+					],
+					"path": [
+						"flightbooking",
+						"passenger",
+						"delete",
+						"8",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT_Flight_by_ID",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"flightNumber\": \"DBIS012\",\r\n  \"departureAirport\": \"DXB\",\r\n  \"arrivalAirport\": \"IST\",\r\n  \"departureTime\": \"2024-03-28T16:00:00\",\r\n  \"arrivalTime\": \"2024-03-28T19:30:00\",\r\n  \"capacity\": 180,\r\n  \"price\": 25000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_BASE}}/flightbooking/flight/update/22/submit",
+					"host": [
+						"{{URL_BASE}}"
+					],
+					"path": [
+						"flightbooking",
+						"flight",
+						"update",
+						"22",
+						"submit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT_Passenger_by_ID",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"flightNumber\": \"DBIS012\",\r\n  \"departureAirport\": \"DXB\",\r\n  \"arrivalAirport\": \"IST\",\r\n  \"departureTime\": \"2024-03-28T16:00:00\",\r\n  \"arrivalTime\": \"2024-03-28T19:30:00\",\r\n  \"capacity\": 180,\r\n  \"price\": 25000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_BASE}}/flightbooking/flight/update/22/submit",
+					"host": [
+						"{{URL_BASE}}"
+					],
+					"path": [
+						"flightbooking",
+						"flight",
+						"update",
+						"22",
+						"submit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_flight",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"flightNumber\": \"NYLA123\",\r\n  \"departureAirport\": \"JFK\",\r\n  \"arrivalAirport\": \"LAX\",\r\n  \"departureTime\": \"2024-03-25T08:00:00\",\r\n  \"arrivalTime\": \"2024-03-25T11:00:00\",\r\n  \"capacity\": 150,\r\n  \"price\": 200\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{URL_BASE}}/flightbooking/create_flight/",
+					"host": [
+						"{{URL_BASE}}"
+					],
+					"path": [
+						"flightbooking",
+						"create_flight",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_booking",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"passengerID\": 20,\r\n  \"flightID\": 32,\r\n  \"seat\": \"22D\",\r\n  \"status\": \"Canceled\"\r\n}"
+				},
+				"url": {
+					"raw": "{{URL_BASE}}flightbooking/create_booking/",
+					"host": [
+						"{{URL_BASE}}flightbooking"
+					],
+					"path": [
+						"create_booking",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT_booking",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"passengerID\":22,\r\n  \"flightID\":24,\r\n  \"seat\":\"22D\",\r\n  \"status\":\"Canceled\"\r\n}"
+				},
+				"url": {
+					"raw": "{{URL_BASE}}/flightbooking/booking/update/29/submit",
+					"host": [
+						"{{URL_BASE}}"
+					],
+					"path": [
+						"flightbooking",
+						"booking",
+						"update",
+						"29",
+						"submit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_passenger",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Luiz Felipe\",\r\n  \"email\": \"luiz@luiz.com\",\r\n  \"phone\": \"236-356-65248\",\r\n  \"address\": \"50, Buty St\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL_BASE}}/flightbooking/create_passenger/",
+					"host": [
+						"{{URL_BASE}}"
+					],
+					"path": [
+						"flightbooking",
+						"create_passenger",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete_Flight_by_ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL_BASE}}//flightbooking/flight/delete/2/",
+					"host": [
+						"{{URL_BASE}}"
+					],
+					"path": [
+						"",
+						"flightbooking",
+						"flight",
+						"delete",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL_BASE",
+			"value": "http://192.168.56.104:8000/",
+			"type": "string"
+		}
+	]
+}
